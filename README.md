@@ -24,17 +24,17 @@ curl "http://127.0.0.1:5000/calcular_fecha?fecha_inicio=01-04-2026&dias=1"
 Respuesta:
 
 ```json
-{ "fecha_final": "2026-04-06" }
+{ "fecha_final": "06-04-2026" }
 ```
 
 Con amortiguador:
 
-curl "http://127.0.0.1:5000/calcular_fecha?fecha_inicio=01-04-2026&dias=1&amortiguador=2"
+curl "http://127.0.0.1:5000/calcular_fecha?fecha_inicio=01-04-2026&dias=1&amortiguador=11"
 
 ```json
 {
-  "fecha_final": "2026-04-06",
-  "fecha_final_amortiguador": "2026-04-08"
+  "fecha_final": "06-04-2026",
+  "fecha_final_amortiguador": "21-04-2026"
 }
 ```
 
