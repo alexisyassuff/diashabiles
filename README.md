@@ -34,6 +34,6 @@ pip install flask holidays
 
 ### Ejecutar el script:
 
-python calcular_fecha.py
+python3 calcular_fecha.py
 
 El servidor quedará corriendo localmente en el puerto 5000.
