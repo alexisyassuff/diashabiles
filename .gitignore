@@ -1,0 +1,26 @@
+
+---
+
+## ✅ `.gitignore` (para que NO suba el venv)
+
+Creá o editá el archivo `.gitignore` en la raíz del repo:
+
+```gitignore
+# Entornos virtuales
+venv/
+.env/
+.envrc/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Logs
+*.log
+
+# IDEs / editores
+.vscode/
+.idea/
+
+# Sistema
+.DS_Store
