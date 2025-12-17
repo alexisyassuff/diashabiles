@@ -23,31 +23,23 @@ Si se envía el amortiguador, también retorna la fecha final máxima permitida.
 
 # Sin amortiguador:
 
-```bash
 curl "http://127.0.0.1:5000/calcular_fecha?fecha_inicio=01-04-2026&dias=1&pais=AR"
-```
 
-Respuesta:
-
-`````json
-{"fecha_final":"06-04-2026","incluye_sabado":false,"pais":"AR"}
+```json
+{ "fecha_final": "06-04-2026", "incluye_sabado": false, "pais": "AR" }
 ```
 
 Sábado día hábil (Argentina):
 
-```bash
 curl "http://127.0.0.1:5000/calcular_fecha?fecha_inicio=01-04-2026&dias=1&amortiguador=11&pais=AR&incluye_sabado=true"
-```
 
-````json
+`````json
 {"fecha_final":"04-04-2026","fecha_final_amortiguador":"17-04-2026","incluye_sabado":true,"pais":"AR"}
 ```
 
 Sábado día hábil (España):
 
-```bash
 curl "http://127.0.0.1:5000/calcular_fecha?fecha_inicio=01-04-2026&dias=1&amortiguador=11&pais=ESincluye_sabado=true"
-```
 
 ````json
 {"fecha_final":"02-04-2026","fecha_final_amortiguador":"16-04-2026","incluye_sabado":true,"pais":"ES"}
