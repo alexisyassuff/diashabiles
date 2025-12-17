@@ -35,10 +35,10 @@ curl "http://127.0.0.1:5000/calcular_fecha?fecha_inicio=01-04-2026&dias=1&pais=A
 }
 ```
 
-Sábado día hábil (Argentina)
+Sábado día hábil (España)
 
 ```bash
-curl "http://127.0.0.1:5000/calcular_fecha?fecha_inicio=01-04-2026&dias=1&amortiguador=11&pais=AR&incluye_sabado=true"
+curl "http://127.0.0.1:5000/calcular_fecha?fecha_inicio=02-04-2026&dias=1&amortiguador=11&pais=ES&incluye_sabado=true"
 ```
 
 ```json
@@ -46,21 +46,21 @@ curl "http://127.0.0.1:5000/calcular_fecha?fecha_inicio=01-04-2026&dias=1&amorti
   "fecha_final": "04-04-2026",
   "fecha_final_amortiguador": "17-04-2026",
   "incluye_sabado": true,
-  "pais": "AR"
+  "pais": "ES"
 }
 ```
 
-Sábado día hábil (España)
+Sábado día inhábil (España)
 
 ```bash
-curl "http://127.0.0.1:5000/calcular_fecha?fecha_inicio=01-04-2026&dias=1&amortiguador=11&pais=ES&incluye_sabado=true"
+curl "http://127.0.0.1:5000/calcular_fecha?fecha_inicio=02-04-2026&dias=1&amortiguador=11&pais=ES&incluye_sabado=false"
 ```
 
 ```json
 {
-  "fecha_final": "02-04-2026",
-  "fecha_final_amortiguador": "16-04-2026",
-  "incluye_sabado": true,
+  "fecha_final": "06-04-2026",
+  "fecha_final_amortiguador": "21-04-2026",
+  "incluye_sabado": false,
   "pais": "ES"
 }
 ```
