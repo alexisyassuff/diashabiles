@@ -21,7 +21,7 @@ Si se envía el amortiguador, también retorna la fecha final máxima permitida.
 
 ## Ejemplo de uso
 
-# Sin amortiguador:
+### Sin amortiguador:
 
 curl "http://127.0.0.1:5000/calcular_fecha?fecha_inicio=01-04-2026&dias=1&pais=AR"
 
