@@ -4,18 +4,6 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-# Mapeo de países soportados
-HOLIDAYS_MAP = {
-    "AR": holidays.AR,
-    "ES": holidays.ES,
-    "CL": holidays.CL,
-    "BR": holidays.BR,
-    "US": holidays.US,
-    "MX": holidays.MX,
-    "UY": holidays.UY,
-    "CO": holidays.CO,
-}
-
 def es_dia_habil(fecha, feriados, incluye_sabado):
     # Domingo nunca es hábil
     if fecha.weekday() == 6:
@@ -41,18 +29,18 @@ def calcular_fecha():
 
     amortiguador = int(amortiguador) if amortiguador is not None else None
 
-    # Detectar formato de fecha automáticamente
-    formato_argentino = False
     try:
         fecha = datetime.strptime(fecha_inicio, "%Y-%m-%d").date()
     except ValueError:
         fecha = datetime.strptime(fecha_inicio, "%d-%m-%Y").date()
-        formato_argentino = True
 
-    if pais not in HOLIDAYS_MAP:
+    try:
+        feriados = holidays.country_holidays(
+            pais,
+            years=[fecha.year, fecha.year + 1]
+        )
+    except Exception:
         return jsonify({"error": "País no soportado"}), 400
-
-    feriados = HOLIDAYS_MAP[pais](years=[fecha.year, fecha.year + 1])
 
     dias_objetivo = dias
     dias_maximos = dias + amortiguador if amortiguador is not None else None
@@ -77,17 +65,14 @@ def calcular_fecha():
             if dias_maximos is None and dias_contados == dias_objetivo:
                 break
 
-    def formatear(f):
-        return f.strftime("%d-%m-%Y") if formato_argentino else f.isoformat()
-
     respuesta = {
-        "fecha_final": formatear(fecha_final),
+        "fecha_final": fecha_final.isoformat(),
         "pais": pais,
         "incluye_sabado": incluye_sabado
     }
 
     if fecha_final_amortiguador:
-        respuesta["fecha_final_amortiguador"] = formatear(fecha_final_amortiguador)
+        respuesta["fecha_final_amortiguador"] = fecha_final_amortiguador.isoformat()
 
     return jsonify(respuesta)
 
